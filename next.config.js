@@ -9,6 +9,7 @@ const config = {
   images: {
     domains: ["imgs.limc.dev"],
   },
+  outDir: "./dist",
 };
 
 export default config;
