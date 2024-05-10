@@ -22,6 +22,8 @@ async function getPosts(params: { [key: string]: string | string[] | undefined }
     method: "GET",
   });
 
+  console.log(req);
+
   if (!req.ok) throw new Error("서버에서 에러가 발생했습니다.");
 
   return await req.json() as Page<PostListItem>;
@@ -49,12 +51,6 @@ export default async function PostPage({ searchParams }: PostPageProps) {
 
   return (
     <main>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content="글 목록" />
-        <meta name="keywords" content="글 목록" />
-        <meta property="og:title" content={title} />
-      </Head>
       <h3>{title}</h3>
       <Posts posts={data} info={info} links={links} />
     </main>
