@@ -5,10 +5,12 @@ import Link from "next/link";
 export let metadata: any = {};
 
 async function getTopics(name: string) {
+  console.log("process.env.API_URL", process.env.API_URL);
   const req = await fetch(`${process.env.API_URL}/topics/${name}`, {
     method: "GET",
   });
 
+  console.log(await req.json());
   if (!req.ok) throw new Error("서버에서 에러가 발생했습니다.");
 
   return await req.json() as TopicItem;

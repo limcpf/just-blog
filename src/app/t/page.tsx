@@ -13,11 +13,13 @@ export const metadata = {
 
 async function getTopics(params: { [key: string]: string | string[] | undefined }) {
   const page = params["page"] ?? "1";
+  console.log("process.env.API_URL", process.env.API_URL);
 
   const req = await fetch(`${process.env.API_URL}/topics?page=${page}`, {
     method: "GET",
   });
 
+  console.log(await req.json());
   if (!req.ok) throw new Error("서버에서 에러가 발생했습니다.");
 
   return await req.json() as Page<TopicListItem>;
