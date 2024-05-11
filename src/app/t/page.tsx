@@ -16,7 +16,11 @@ export const metadata = {
 async function getTopics(params: { [key: string]: string | string[] | undefined }) {
   const page = params["page"] ?? "1";
 
-  const req = await api(`/topics?page=${page}`, "GET");
+  const req = await api(`/topics?page=${page}`, "GET", {
+    next: {
+      revalidate: 300
+    }
+  });
 
   if (!req.ok) throw new Error("서버에서 에러가 발생했습니다.");
 

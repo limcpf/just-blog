@@ -19,7 +19,11 @@ async function getSeriesList(params: { [key: string]: string | string[] | undefi
 
   const querys = [page, topic].filter(q => q !== '');
 
-  const req = await api(`/series?${querys.join('&')}`, "GET");
+  const req = await api(`/series?${querys.join('&')}`, "GET", {
+    next: {
+      revalidate: 300
+    }
+  });
 
   if (!req.ok) throw new Error("서버에서 에러가 발생했습니다.");
 
