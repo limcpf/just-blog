@@ -1,6 +1,6 @@
-import "~/styles/globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Nanum_Gothic_Coding } from "next/font/google";
+import Head from "next/head";
 import Link from "next/link";
 
 const inter = Nanum_Gothic_Coding({
@@ -21,6 +21,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="kr">
+      <head>
+        <style>
+          {`html {width: 100vw;  padding: 0em 1em;  box-sizing: border-box;}a,a:visited,a:link {color: black;}body {max-width: 1280px}section {cursor: pointer;}nav a {margin-right: 2em;}img {width: 100%;}h1 {font-size: 32px;}main h1 {font-size: 36px;}h2 {font-size: 24px;}`}
+        </style>
+      </head>
       <body className={`font-sans ${inter.variable}`}>
         <header>
           <h1><Link href="/">백엔드 개발자가 만든 개발 블로그</Link></h1>

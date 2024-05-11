@@ -22,8 +22,6 @@ async function getPosts(params: { [key: string]: string | string[] | undefined }
 
   const req = await api(`/posts?${querys.join('&')}`, "GET");
 
-  console.log(req);
-
   if (!req.ok) throw new Error("서버에서 에러가 발생했습니다.");
 
   return await req.json() as Page<PostListItem>;
