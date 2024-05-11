@@ -19,7 +19,9 @@ async function getTopics(params: { [key: string]: string | string[] | undefined 
     method: "GET",
   });
 
-  console.log(req);
+  for (const h of Object.keys(req.headers)) {
+    console.log(h, " : ", req.headers.get(h));
+  }
 
   if (!req.ok) throw new Error("서버에서 에러가 발생했습니다.");
 
