@@ -17,12 +17,16 @@ async function getTopics(params: { [key: string]: string | string[] | undefined 
 
   const req = await fetch(`${process.env.API_URL}/topics?page=${page}`, {
     method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+    },
+    mode: "cors",
+    credentials: "include",
   });
   console.log(`${process.env.API_URL}/topics?page=${page}`)
 
-  for (const h of Object.keys(req.headers)) {
-    console.log(h, " : ", req.headers.get(h));
-  }
+  console.log(req.headers.forEach((v, k) => console.log(k, " : ", v)));
 
   if (!req.ok) throw new Error("서버에서 에러가 발생했습니다.");
 
