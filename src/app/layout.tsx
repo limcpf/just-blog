@@ -1,5 +1,5 @@
 import "~/styles/globals.css";
-
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Nanum_Gothic_Coding } from "next/font/google";
 import Link from "next/link";
 
@@ -34,6 +34,7 @@ export default function RootLayout({
         </header>
         {children}
       </body>
+      <GoogleAnalytics gaId={process.env.GAID ?? ""} />
     </html>
   );
 }

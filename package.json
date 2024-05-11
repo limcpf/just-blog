@@ -11,6 +11,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@next/third-parties": "^14.2.3",
     "@sssh-fresh-code/types-sssh": "^0.1.15",
     "@t3-oss/env-nextjs": "^0.10.1",
     "marked": "^12.0.2",
@@ -31,9 +32,9 @@
     "eslint-config-next": "^14.1.3",
     "postcss": "^8.4.34",
     "prettier": "^3.2.5",
-    "typescript": "^5.4.2",
     "prettier-plugin-tailwindcss": "^0.5.11",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.4.2"
   },
   "ct3aMetadata": {
     "initVersion": "7.32.0"

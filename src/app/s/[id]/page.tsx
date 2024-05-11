@@ -44,7 +44,7 @@ export default async function Page({
   }
 
   return (
-    <main style={{ padding: "2em" }}>
+    <main>
       <h1>{data.name.replaceAll("_", " ")}</h1>
       <ul>
         <li>주제 : <Link href={`/t/${data.topic.name}`}>{data.topic.name}</Link></li>

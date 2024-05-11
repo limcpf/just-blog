@@ -44,7 +44,7 @@ export default async function Page({
   }
 
   return (
-    <main style={{ padding: "2em" }}>
+    <main>
       <h1>{data.name.replaceAll("_", " ")}</h1>
       <ul>
         <li><Link href={`/s?topic=${name}`} title="클릭하면 해당 주제로 쓰여진 시리즈 목록으로 이동합니다." >해당 주제로 쓰여진 <b>시리즈</b> 개수 : <b>{data.seriesCnt}</b> 개</Link></li>

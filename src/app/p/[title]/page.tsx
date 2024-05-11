@@ -46,7 +46,7 @@ export default async function Page({ params }: Parmas) {
   const { topic, series, author } = data;
 
   return (
-    <main style={{ padding: "2em" }}>
+    <main>
       <h1>{data.title.replaceAll("_", " ")}</h1>
       <div>
         <small>주제 :</small> <Link href={`/t/${topic.name}`}>{topic.name}</Link>
