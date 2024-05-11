@@ -1,13 +1,13 @@
 import Link from "next/link";
 import type { PostItem } from "@sssh-fresh-code/types-sssh";
 import { marked } from "marked";
+import { api } from "~/util/api";
+import { ErrorPage } from "~/components/Common/ErrorPage";
 
 export let metadata: any = {};
 
 async function getPost(title: string) {
-  const req = await fetch(`${process.env.API_URL}/posts/${title}`, {
-    method: "GET",
-  });
+  const req = await api(`/posts/${title}`, "GET");
 
   if (!req.ok) throw new Error("서버에서 에러가 발생했습니다.");
 
@@ -22,13 +22,15 @@ export default async function Page({ params }: Parmas) {
   const title = params["title"];
 
 
-  if (!title || typeof title !== "string") return (
-    <div>
-      <h1>무언가 오류가 생겼어요...해당 현상이 계속 된다면 제보해주세요.</h1>
-      <p>제보 이메일 : limcdevblog@gmail.com</p>
-    </div>
-  )
-  const data = await getPost(title);
+  if (!title || typeof title !== "string") return <ErrorPage />;
+
+  let data: PostItem
+
+  try {
+    data = await getPost(title);
+  } catch (e) {
+    return <ErrorPage />
+  }
 
   metadata = {
     title: data.title.replaceAll("_", " "),

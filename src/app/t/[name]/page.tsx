@@ -1,16 +1,13 @@
 import type { TopicItem } from "@sssh-fresh-code/types-sssh";
 import { ErrorPage } from "../../../components/Common/ErrorPage";
 import Link from "next/link";
+import { api } from "~/util/api";
 
 export let metadata: any = {};
 
 async function getTopics(name: string) {
-  console.log("process.env.API_URL", process.env.API_URL);
-  const req = await fetch(`${process.env.API_URL}/topics/${name}`, {
-    method: "GET",
-  });
+  const req = await api(`/topics/${name}`, "GET");
 
-  console.log(await req.json());
   if (!req.ok) throw new Error("서버에서 에러가 발생했습니다.");
 
   return await req.json() as TopicItem;
@@ -23,7 +20,6 @@ export default async function Page({
     [key: string]: string | string[] | undefined
   },
 }) {
-
   const name = params["name"];
 
   if (!name || typeof name !== "string") return <ErrorPage />;

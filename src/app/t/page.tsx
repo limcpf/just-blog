@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Page, TopicListItem } from "@sssh-fresh-code/types-sssh";
 import Pagination from "~/components/Paging/Pagination";
+import { api } from "~/util/api";
+import { ErrorPage } from "~/components/Common/ErrorPage";
 
 export const metadata = {
   title: "주제 목록 - 백엔드 개발자가 만든 개발 블로그",
@@ -13,20 +15,8 @@ export const metadata = {
 
 async function getTopics(params: { [key: string]: string | string[] | undefined }) {
   const page = params["page"] ?? "1";
-  console.log("process.env.API_URL", process.env.API_URL);
 
-  const req = await fetch(`${process.env.API_URL}/topics?page=${page}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-    },
-    mode: "cors",
-    credentials: "include",
-  });
-  console.log(`${process.env.API_URL}/topics?page=${page}`)
-
-  console.log(req.headers.forEach((v, k) => console.log(k, " : ", v)));
+  const req = await api(`/topics?page=${page}`, "GET");
 
   if (!req.ok) throw new Error("서버에서 에러가 발생했습니다.");
 
@@ -40,7 +30,15 @@ export default async function TopicsPage({
     [key: string]: string | string[] | undefined
   }
 }) {
-  const { data, info } = await getTopics(searchParams);
+  let topics: Page<TopicListItem>;
+
+  try {
+    topics = await getTopics(searchParams);
+  } catch (e) {
+    return <ErrorPage />
+  }
+
+  const { data, info } = topics;
 
   return (
     <main>

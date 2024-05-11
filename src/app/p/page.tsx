@@ -1,6 +1,8 @@
 import type { Page, PostListItem } from "@sssh-fresh-code/types-sssh";
 import { Posts } from "../../components/Posts/Posts";
 import Head from "next/head";
+import { ErrorPage } from "~/components/Common/ErrorPage";
+import { api } from "~/util/api";
 
 export const metadata = {
   title: "게시글 목록 - 백엔드 개발자가 만든 개발 블로그",
@@ -18,9 +20,7 @@ async function getPosts(params: { [key: string]: string | string[] | undefined }
 
   const querys = [page, topic, series].filter(q => q !== '');
 
-  const req = await fetch(`${process.env.API_URL}/posts?${querys.join('&')}`, {
-    method: "GET",
-  });
+  const req = await api(`/posts?${querys.join('&')}`, "GET");
 
   console.log(req);
 
@@ -36,7 +36,15 @@ interface PostPageProps {
 }
 
 export default async function PostPage({ searchParams }: PostPageProps) {
-  const { data, info } = await getPosts(searchParams);
+  let posts: Page<PostListItem>;
+
+  try {
+    posts = await getPosts(searchParams);
+  } catch (e) {
+    return <ErrorPage />
+  }
+
+  const { data, info } = posts;
 
   const links = [];
   let title = "▶ 글 목록"

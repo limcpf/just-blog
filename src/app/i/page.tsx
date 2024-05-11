@@ -32,12 +32,12 @@ export default function Page() {
         <br />
       </p>
       <center>
-        <img src="https://imgs.limc.dev/info/ad1.avif" alt="보기 싫은 광고들1" title="보기 싫은 광고들1" width={500} height={300} />
+        <img src="https://imgs.limc.dev/info/ad1.avif" alt="보기 싫은 광고들1" title="보기 싫은 광고들1" />
         <br />
         <small>이제 제목 하나 봤는데...</small>
         <br />
         <br />
-        <img src="https://imgs.limc.dev/info/ad2.avif" alt="보기 싫은 광고들2" title="보기 싫은 광고들2" width={500} height={300} />
+        <img src="https://imgs.limc.dev/info/ad2.avif" alt="보기 싫은 광고들2" title="보기 싫은 광고들2" />
         <br />
         <small>팝업 대신 화면 전체를 덮는 모달을 띄우거나...</small>
         <br />

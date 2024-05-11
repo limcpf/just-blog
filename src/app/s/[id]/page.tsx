@@ -1,13 +1,12 @@
 import type { SeriseItem } from "@sssh-fresh-code/types-sssh";
 import { ErrorPage } from "../../../components/Common/ErrorPage";
 import Link from "next/link";
+import { api } from "~/util/api";
 
 export let metadata: any = {};
 
 async function series(id: string) {
-  const req = await fetch(`${process.env.API_URL}/series/${id}`, {
-    method: "GET",
-  });
+  const req = await api(`/series/${id}`, "GET");
 
   if (!req.ok) throw new Error("서버에서 에러가 발생했습니다.");
 

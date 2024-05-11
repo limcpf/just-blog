@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Page, SeriseListItem } from "@sssh-fresh-code/types-sssh";
 import Pagination from "~/components/Paging/Pagination";
+import { api } from "~/util/api";
+import { ErrorPage } from "~/components/Common/ErrorPage";
 
 export const metadata = {
   title: "시리즈 목록 - 백엔드 개발자가 만든 개발 블로그",
@@ -17,9 +19,7 @@ async function getSeriesList(params: { [key: string]: string | string[] | undefi
 
   const querys = [page, topic].filter(q => q !== '');
 
-  const req = await fetch(`${process.env.API_URL}/series?${querys.join('&')}`, {
-    method: "GET",
-  });
+  const req = await api(`/series?${querys.join('&')}`, "GET");
 
   if (!req.ok) throw new Error("서버에서 에러가 발생했습니다.");
 
@@ -33,7 +33,16 @@ export default async function TopicsPage({
     [key: string]: string | string[] | undefined
   }
 }) {
-  const { data, info } = await getSeriesList(searchParams);
+
+  let series: Page<SeriseListItem>;
+
+  try {
+    series = await getSeriesList(searchParams);
+  } catch (e) {
+    return <ErrorPage />
+  }
+
+  const { data, info } = series;
 
   let title = "▶ 시리즈 목록";
   const links = [];
