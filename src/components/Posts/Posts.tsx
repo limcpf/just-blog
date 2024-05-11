@@ -24,7 +24,7 @@ export function Posts({ posts, info, links }: PostsProps) {
             </Link>
             <span>
               <small>날짜 : {new Date(p.createdAt).toLocaleDateString()}&nbsp;&nbsp;&nbsp;</small>
-              <small>주제 : <Link href={`/t/${p.topic.name}`}>{p.topic.name}</Link>&nbsp;&nbsp;&nbsp;</small>
+              <small>주제 : <Link href={`/t/${encodeURIComponent(p.topic.name)}`}>{p.topic.name}</Link>&nbsp;&nbsp;&nbsp;</small>
               {p.series && (<small>시리즈 : <Link href={`/s/${p.series.id}`}>{p.series.name}</Link></small>)}
 
             </span>

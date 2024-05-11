@@ -52,7 +52,7 @@ export default async function TopicsPage({
           <section key={t.id} style={{ display: "flex", margin: "1rem 0" }} >
             <small style={{ paddingTop: "0.5rem" }}>{t.id}</small>&nbsp;&nbsp;&nbsp;
             <div style={{ color: "darkgray" }}>
-              <Link href={`/t/${t.name}`}>
+              <Link href={`/t/${encodeURIComponent(t.name)}`}>
                 <h2 style={{ margin: "0" }}>
                   {t.name.replaceAll("_", " ")}
                 </h2>

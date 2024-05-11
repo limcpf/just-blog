@@ -47,7 +47,7 @@ export default async function Page({
     <main>
       <h1>{data.name.replaceAll("_", " ")}</h1>
       <ul>
-        <li>주제 : <Link href={`/t/${data.topic.name}`}>{data.topic.name}</Link></li>
+        <li>주제 : <Link href={`/t/${encodeURIComponent(data.topic.name)}`}>{data.topic.name}</Link></li>
         <br />
         <li><Link href={`/p?series=${id}`} title="클릭하면 해당 시리즈로 쓰여진 게시글 목록으로 이동합니다." >해당 시리즈로 쓰여진 <b>게시글</b> 개수 : <b>{data.postsCnt}</b> 개</Link></li>
       </ul>

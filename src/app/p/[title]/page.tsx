@@ -49,7 +49,7 @@ export default async function Page({ params }: Parmas) {
     <main>
       <h1>{data.title.replaceAll("_", " ")}</h1>
       <div>
-        <small>주제 :</small> <Link href={`/t/${topic.name}`}>{topic.name}</Link>
+        <small>주제 :</small> <Link href={`/t/${encodeURIComponent(topic.name)}`}>{topic.name}</Link>
         {series && <> | <small>시리즈 :</small> <Link href={`/s/${series.id}`}>{series.name}</Link></>}
         &nbsp;| {new Date().toLocaleDateString()}
         &nbsp;| {author.userName}
