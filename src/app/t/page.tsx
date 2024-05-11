@@ -18,6 +18,7 @@ async function getTopics(params: { [key: string]: string | string[] | undefined 
   const req = await fetch(`${process.env.API_URL}/topics?page=${page}`, {
     method: "GET",
   });
+  console.log(`${process.env.API_URL}/topics?page=${page}`)
 
   for (const h of Object.keys(req.headers)) {
     console.log(h, " : ", req.headers.get(h));
