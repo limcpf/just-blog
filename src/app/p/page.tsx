@@ -20,7 +20,11 @@ async function getPosts(params: { [key: string]: string | string[] | undefined }
 
   const querys = [page, topic, series].filter(q => q !== '');
 
-  const req = await api(`/posts?${querys.join('&')}`, "GET", { cache: "no-store" });
+  const req = await api(`/posts?${querys.join('&')}`, "GET", {
+    next: {
+      revalidate: 300
+    }
+  });
 
   if (!req.ok) throw new Error("서버에서 에러가 발생했습니다.");
 
