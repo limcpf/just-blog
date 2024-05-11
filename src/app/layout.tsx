@@ -23,7 +23,10 @@ export default function RootLayout({
     <html lang="kr">
       <head>
         <style>
-          {`html {width: 100vw;  padding: 0em 1em;  box-sizing: border-box;}a,a:visited,a:link {color: black;}body {max-width: 1280px}section {cursor: pointer;}nav a {margin-right: 2em;}img {width: 100%;}h1 {font-size: 32px;}main h1 {font-size: 36px;}h2 {font-size: 24px;}`}
+          {`html{width:100vw;padding:0em1em;box-sizing:border-box;}a,a:visited,a:link{color:black;}body{max-width:1280px}section{cursor:pointer;}nav a{margin-right:2em;}img{width:100%;}h1{font-size:32px;}main h1{font-size:36px;}h2{font-size:24px;}`}
+        </style>
+        <style>
+          {`@media(prefers-color-scheme: dark){html{background-color:#121212;color:rgba(255,255,255, 0.6)}a,a:visited,a:link{color: rgba(255,255,255, 0.6)}}`}
         </style>
       </head>
       <body className={`font-sans ${inter.variable}`}>
